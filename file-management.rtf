@@ -1,0 +1,581 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fmodern Consolas;}{\f1\fnil\fcharset129 Courier New;}}
+{\colortbl ;\red20\green20\blue20;\red142\green142\blue142;\red170\green85\blue85;\red170\green64\blue64;\red85\green85\blue85;\red170\green51\blue170;}
+\viewkind4\uc1\pard\f0\fs20 [root@ip-172-31-34-93 ~]# lsblk\cf1\highlight2 
+\par \cf0\highlight0 NAME    MAJ:MIN   RM  SIZE RO TYPE MOUNTPOINTS\cf1\highlight2 
+\par \cf0\highlight0 xvda    202:0      0   10G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda1 202:1      0    1M  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda2 202:2      0  200M  0 part /boot/efi\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvda3 202:3      0  9.8G  0 part /\cf1\highlight2 
+\par \cf0\highlight0 xvdbb   202:13568  0   40G  0 disk\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# parted /dev/xvdbb\cf1\highlight2 
+\par \cf0\highlight0 GNU Parted 3.6\cf1\highlight2 
+\par \cf0\highlight0 Using /dev/xvdbb\cf1\highlight2 
+\par \cf0\highlight0 Welcome to GNU Parted! Type 'help' to view a list of commands.\cf1\highlight2 
+\par \cf0\highlight0 (parted) maklabel\cf1\highlight2 
+\par \cf0\highlight0   align-check TYPE N                       check partition N for TYPE(min|opt) alignment\cf1\highlight2 
+\par \cf0\highlight0   help [COMMAND]                           print general help, or help on COMMAND\cf1\highlight2 
+\par \cf0\highlight0   mklabel,mktable LABEL-TYPE               create a new disklabel (partition table)\cf1\highlight2 
+\par \cf0\highlight0   mkpart PART-TYPE [FS-TYPE] START END     make a partition\cf1\highlight2 
+\par \cf0\highlight0   name NUMBER NAME                         name partition NUMBER as NAME\cf1\highlight2 
+\par \cf0\highlight0   print [devices|free|list,all]            display the partition table, or available devices, or free space, or all found partitions\cf1\highlight2 
+\par \cf0\highlight0   quit                                     exit program\cf1\highlight2 
+\par \cf0\highlight0   rescue START END                         rescue a lost partition near START and END\cf1\highlight2 
+\par \cf0\highlight0   resizepart NUMBER END                    resize partition NUMBER\cf1\highlight2 
+\par \cf0\highlight0   rm NUMBER                                delete partition NUMBER\cf1\highlight2 
+\par \cf0\highlight0   select DEVICE                            choose the device to edit\cf1\highlight2 
+\par \cf0\highlight0   disk_set FLAG STATE                      change the FLAG on selected device\cf1\highlight2 
+\par \cf0\highlight0   disk_toggle [FLAG]                       toggle the state of FLAG on selected device\cf1\highlight2 
+\par \cf0\highlight0   set NUMBER FLAG STATE                    change the FLAG on partition NUMBER\cf1\highlight2 
+\par \cf0\highlight0   toggle [NUMBER [FLAG]]                   toggle the state of FLAG on partition NUMBER\cf1\highlight2 
+\par \cf0\highlight0   type NUMBER TYPE-ID or TYPE-UUID         type set TYPE-ID or TYPE-UUID of partition NUMBER\cf1\highlight2 
+\par \cf0\highlight0   unit UNIT                                set the default unit to UNIT\cf1\highlight2 
+\par \cf0\highlight0   version                                  display the version number and copyright information of GNU Parted\cf1\highlight2 
+\par \cf0\highlight0 (parted) mklabel\cf1\highlight2 
+\par \cf0\highlight0 New disk label type? gpt\cf1\highlight2 
+\par \cf0\highlight0 (parted) mkpart Primary\cf1\highlight2 
+\par \cf0\highlight0 File system type?  [ext2]?\cf1\highlight2 
+\par \cf0\highlight0 Start? 1\cf1\highlight2 
+\par \cf0\highlight0 End? 10240\cf1\highlight2 
+\par \cf0\highlight0 (parted) p\cf1\highlight2 
+\par \cf0\highlight0 Model: Xen Virtual Block Device (xvd)\cf1\highlight2 
+\par \cf0\highlight0 Disk /dev/xvdbb: 42.9GB\cf1\highlight2 
+\par \cf0\highlight0 Sector size (logical/physical): 512B/512B\cf1\highlight2 
+\par \cf0\highlight0 Partition Table: gpt\cf1\highlight2 
+\par \cf0\highlight0 Disk Flags:\cf1\highlight2 
+\par 
+\par \cf0\highlight0 Number  Start   End     Size    File system  Name     Flags\cf1\highlight2 
+\par \cf0\highlight0  1      1049kB  10.2GB  10.2GB  ext2         Primary\cf1\highlight2 
+\par 
+\par \cf0\highlight0 (parted) q\cf1\highlight2 
+\par \cf0\highlight0 Information: You may need to update /etc/fstab.\cf1\highlight2 
+\par 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# pvcreate /dev/xvdbb\cf1\highlight2 
+\par \cf0\highlight0   Cannot use /dev/xvdbb: device is partitioned\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# lsblk\cf1\highlight2 
+\par \cf0\highlight0 NAME     MAJ:MIN   RM  SIZE RO TYPE MOUNTPOINTS\cf1\highlight2 
+\par \cf0\highlight0 xvda     202:0      0   10G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda1  202:1      0    1M  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda2  202:2      0  200M  0 part /boot/efi\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvda3  202:3      0  9.8G  0 part /\cf1\highlight2 
+\par \cf0\highlight0 xvdbb    202:13568  0   40G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvdbb1 202:13569  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# pvcreate /dev/xvdbb1\cf1\highlight2 
+\par \cf0\highlight0   Physical volume "/dev/xvdbb1" successfully created.\cf1\highlight2 
+\par \cf0\highlight0   Creating devices file /etc/lvm/devices/system.devices\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# vgcreate orcalevg /dev/xvdbb1\cf1\highlight2 
+\par \cf0\highlight0   Volume group "orcalevg" successfully created\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# lvcreate -L 9.5gb orcalevg /dev/xvdbb1 orcalelv\cf1\highlight2 
+\par \cf0\highlight0   Physical Volume "orcalelv" not found in Volume Group "orcalevg".\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# vgdisplay\cf1\highlight2 
+\par \cf0\highlight0   --- Volume group ---\cf1\highlight2 
+\par \cf0\highlight0   VG Name               orcalevg\cf1\highlight2 
+\par \cf0\highlight0   System ID\cf1\highlight2 
+\par \cf0\highlight0   Format                lvm2\cf1\highlight2 
+\par \cf0\highlight0   Metadata Areas        1\cf1\highlight2 
+\par \cf0\highlight0   Metadata Sequence No  1\cf1\highlight2 
+\par \cf0\highlight0   VG Access             read/write\cf1\highlight2 
+\par \cf0\highlight0   VG Status             resizable\cf1\highlight2 
+\par \cf0\highlight0   MAX LV                0\cf1\highlight2 
+\par \cf0\highlight0   Cur LV                0\cf1\highlight2 
+\par \cf0\highlight0   Open LV               0\cf1\highlight2 
+\par \cf0\highlight0   Max PV                0\cf1\highlight2 
+\par \cf0\highlight0   Cur PV                1\cf1\highlight2 
+\par \cf0\highlight0   Act PV                1\cf1\highlight2 
+\par \cf0\highlight0   VG Size               <9.54 GiB\cf1\highlight2 
+\par \cf0\highlight0   PE Size               4.00 MiB\cf1\highlight2 
+\par \cf0\highlight0   Total PE              2441\cf1\highlight2 
+\par \cf0\highlight0   Alloc PE / Size       0 / 0\cf1\highlight2 
+\par \cf0\highlight0   Free  PE / Size       2441 / <9.54 GiB\cf1\highlight2 
+\par \cf0\highlight0   VG UUID               JV1YCh-Axr7-XpLJ-BhjC-oiY9-TRXN-Vmb2za\cf1\highlight2 
+\par 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# lvcreate -L 9.5gb orcalevg -n orcalelv\cf1\highlight2 
+\par \cf0\highlight0   Logical volume "orcalelv" created.\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# lsblk\cf1\highlight2 
+\par \cf0\highlight0 NAME                  MAJ:MIN   RM  SIZE RO TYPE MOUNTPOINTS\cf1\highlight2 
+\par \cf0\highlight0 xvda                  202:0      0   10G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda1               202:1      0    1M  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda2               202:2      0  200M  0 part /boot/efi\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvda3               202:3      0  9.8G  0 part /\cf1\highlight2 
+\par \cf0\highlight0 xvdbb                 202:13568  0   40G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvdbb1              202:13569  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0   \u9492?\u9472?orcalevg-orcalelv 253:0      0  9.5G  0 lvm\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# lvdisplay\cf1\highlight2 
+\par \cf0\highlight0   --- Logical volume ---\cf1\highlight2 
+\par \cf0\highlight0   LV Path                /dev/orcalevg/orcalelv\cf1\highlight2 
+\par \cf0\highlight0   LV Name                orcalelv\cf1\highlight2 
+\par \cf0\highlight0   VG Name                orcalevg\cf1\highlight2 
+\par \cf0\highlight0   LV UUID                2x4V0g-ICq4-mY3J-sn8N-J3DU-ScyU-Ve85pf\cf1\highlight2 
+\par \cf0\highlight0   LV Write Access        read/write\cf1\highlight2 
+\par \cf0\highlight0   LV Creation host, time ip-172-31-34-93.us-east-2.compute.internal, 2025-06-11 06:37:15 +0000\cf1\highlight2 
+\par \cf0\highlight0   LV Status              available\cf1\highlight2 
+\par \cf0\highlight0   # open                 0\cf1\highlight2 
+\par \cf0\highlight0   LV Size                9.50 GiB\cf1\highlight2 
+\par \cf0\highlight0   Current LE             2432\cf1\highlight2 
+\par \cf0\highlight0   Segments               1\cf1\highlight2 
+\par \cf0\highlight0   Allocation             inherit\cf1\highlight2 
+\par \cf0\highlight0   Read ahead sectors     auto\cf1\highlight2 
+\par \cf0\highlight0   - currently set to     8192\cf1\highlight2 
+\par \cf0\highlight0   Block device           253:0\cf1\highlight2 
+\par 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# mkfs -t ext4 /dev/orcalevg/orcalelv\cf1\highlight2 
+\par \cf0\highlight0 mke2fs 1.47.1 (20-May-2024)\cf1\highlight2 
+\par \cf0\highlight0 Creating filesystem with 2490368 4k blocks and 622592 inodes\cf1\highlight2 
+\par \cf0\highlight0 Filesystem UUID: fef6b41f-ab90-4686-a4bd-6542cb38ddfc\cf1\highlight2 
+\par \cf0\highlight0 Superblock backups stored on blocks:\cf1\highlight2 
+\par \cf0\highlight0         32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632\cf1\highlight2 
+\par 
+\par \cf0\highlight0 Allocating group tables: done\cf1\highlight2 
+\par \cf0\highlight0 Writing inode tables: done\cf1\highlight2 
+\par \cf0\highlight0 Creating journal (16384 blocks): done\cf1\highlight2 
+\par \cf0\highlight0 Writing superblocks and filesystem accounting information: done\cf1\highlight2 
+\par 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# blkid\cf1\highlight2 
+\par \cf0\highlight0 /dev/xvda2: SEC_TYPE="msdos" UUID="7B77-95E7" BLOCK_SIZE="512" TYPE="vfat" PARTUUID="68b2905b-df3e-4fb3-80fa-49d1e773aa33"\cf1\highlight2 
+\par \cf0\highlight0 /dev/xvda3: LABEL="root" UUID="266a8881-a1f0-4bfd-932c-685f3bfa17ff" BLOCK_SIZE="512" TYPE="xfs" PARTUUID="6264d520-3fb9-423f-8ab8-7a0a8e3d3562"\cf1\highlight2 
+\par \cf0\highlight0 /dev/xvdbb1: UUID="JZe19O-QG2E-vsji-rkIM-Pi14-dA1c-OejFw4" TYPE="LVM2_member" PARTLABEL="Primary" PARTUUID="a259b2a9-e674-4319-a036-d600e5558355"\cf1\highlight2 
+\par \cf0\highlight0 /dev/xvda1: PARTUUID="fac7f1fb-3e8d-4137-a512-961de09a5549"\cf1\highlight2 
+\par \cf0\highlight0 /dev/mapper/orcalevg-orcalelv: UUID="fef6b41f-ab90-4686-a4bd-6542cb38ddfc" BLOCK_SIZE="4096" TYPE="ext4"\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# mkdir /orcale\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# mount -t ext4 /dev/orcalevg/orcalelv /orcale\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# df -Th |grep orcale\cf1\highlight2 
+\par \cf0\highlight0 /dev/mapper/\cf3 orcale\cf0 vg-\cf3 orcale\cf0 lv ext4      9.3G   24K  8.8G   1% /\cf3 orcale\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# parted xvdbb\cf1\highlight2 
+\par \cf0\highlight0 Error: Could not stat device xvdbb - No such file or directory.\cf1\highlight2 
+\par \cf0\highlight0 Retry/Cancel? ^C\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# parted /de/xvdbb\cf1\highlight2 
+\par \cf0\highlight0 Error: Could not stat device /de/xvdbb - No such file or directory.\cf1\highlight2 
+\par \cf0\highlight0 Retry/Cancel? ^C\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# parted /dev/xvdbb\cf1\highlight2 
+\par \cf0\highlight0 GNU Parted 3.6\cf1\highlight2 
+\par \cf0\highlight0 Using /dev/xvdbb\cf1\highlight2 
+\par \cf0\highlight0 Welcome to GNU Parted! Type 'help' to view a list of commands.\cf1\highlight2 
+\par \cf0\highlight0 (parted) mkpart Primary\cf1\highlight2 
+\par \cf0\highlight0 File system type?  [ext2]?\cf1\highlight2 
+\par \cf0\highlight0 Start? 10241\cf1\highlight2 
+\par \cf0\highlight0 End? 20480\cf1\highlight2 
+\par \cf0\highlight0 (parted) p\cf1\highlight2 
+\par \cf0\highlight0 Model: Xen Virtual Block Device (xvd)\cf1\highlight2 
+\par \cf0\highlight0 Disk /dev/xvdbb: 42.9GB\cf1\highlight2 
+\par \cf0\highlight0 Sector size (logical/physical): 512B/512B\cf1\highlight2 
+\par \cf0\highlight0 Partition Table: gpt\cf1\highlight2 
+\par \cf0\highlight0 Disk Flags:\cf1\highlight2 
+\par 
+\par \cf0\highlight0 Number  Start   End     Size    File system  Name     Flags\cf1\highlight2 
+\par \cf0\highlight0  1      1049kB  10.2GB  10.2GB               Primary\cf1\highlight2 
+\par \cf0\highlight0  2      10.2GB  20.5GB  10.2GB  ext2         Primary\cf1\highlight2 
+\par 
+\par \cf0\highlight0 (parted) q\cf1\highlight2 
+\par \cf0\highlight0 Information: You may need to update /etc/fstab.\cf1\highlight2 
+\par 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# df -h\cf1\highlight2 
+\par \cf0\highlight0 Filesystem                     Size  Used Avail Use% Mounted on\cf1\highlight2 
+\par \cf0\highlight0 /dev/xvda3                     9.8G  1.8G  8.0G  18% /\cf1\highlight2 
+\par \cf0\highlight0 devtmpfs                       4.0M     0  4.0M   0% /dev\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                          476M     0  476M   0% /dev/shm\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                          191M  3.7M  187M   2% /run\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                          1.0M     0  1.0M   0% /run/credentials/systemd-journald.service\cf1\highlight2 
+\par \cf0\highlight0 /dev/xvda2                     200M  8.4M  192M   5% /boot/efi\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                          1.0M     0  1.0M   0% /run/credentials/getty@tty1.service\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                          1.0M     0  1.0M   0% /run/credentials/serial-getty@ttyS0.service\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                           96M  4.0K   96M   1% /run/user/1000\cf1\highlight2 
+\par \cf0\highlight0 /dev/mapper/orcalevg-orcalelv  9.3G   24K  8.8G   1% /orcale\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# parted /dev/xvdbb\cf1\highlight2 
+\par \cf0\highlight0 GNU Parted 3.6\cf1\highlight2 
+\par \cf0\highlight0 Using /dev/xvdbb\cf1\highlight2 
+\par \cf0\highlight0 Welcome to GNU Parted! Type 'help' to view a list of commands.\cf1\highlight2 
+\par \cf0\highlight0 (parted) ^C\cf1\highlight2 
+\par 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# df -ih\cf1\highlight2 
+\par \cf0\highlight0 Filesystem                    Inodes IUsed IFree IUse% Mounted on\cf1\highlight2 
+\par \cf0\highlight0 /dev/xvda3                      5.0M   43K  4.9M    1% /\cf1\highlight2 
+\par \cf0\highlight0 devtmpfs                        112K   352  111K    1% /dev\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                           119K     2  119K    1% /dev/shm\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                           800K   630  800K    1% /run\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                           1.0K     2  1022    1% /run/credentials/systemd-journald.service\cf1\highlight2 
+\par \cf0\highlight0 /dev/xvda2                         0     0     0     - /boot/efi\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                           1.0K     2  1022    1% /run/credentials/getty@tty1.service\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                           1.0K     2  1022    1% /run/credentials/serial-getty@ttyS0.service\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                            24K    20   24K    1% /run/user/1000\cf1\highlight2 
+\par \cf0\highlight0 /dev/mapper/orcalevg-orcalelv   608K    11  608K    1% /orcale\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# lsblk\cf1\highlight2 
+\par \cf0\highlight0 NAME                  MAJ:MIN   RM  SIZE RO TYPE MOUNTPOINTS\cf1\highlight2 
+\par \cf0\highlight0 xvda                  202:0      0   10G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda1               202:1      0    1M  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda2               202:2      0  200M  0 part /boot/efi\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvda3               202:3      0  9.8G  0 part /\cf1\highlight2 
+\par \cf0\highlight0 xvdbb                 202:13568  0   40G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvdbb1              202:13569  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9474? \u9492?\u9472?orcalevg-orcalelv 253:0      0  9.5G  0 lvm  /orcale\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvdbb2              202:13570  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]#\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# pvcreate /dev/xvdbb2\cf1\highlight2 
+\par \cf0\highlight0   Physical volume "/dev/xvdbb2" successfully created.\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# mkdir\cf1\highlight2 
+\par \cf0\highlight0 mkdir: missing operand\cf1\highlight2 
+\par \cf0\highlight0 Try 'mkdir --help' for more information.\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# lsblk\cf1\highlight2 
+\par \cf0\highlight0 NAME                  MAJ:MIN   RM  SIZE RO TYPE MOUNTPOINTS\cf1\highlight2 
+\par \cf0\highlight0 xvda                  202:0      0   10G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda1               202:1      0    1M  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda2               202:2      0  200M  0 part /boot/efi\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvda3               202:3      0  9.8G  0 part /\cf1\highlight2 
+\par \cf0\highlight0 xvdbb                 202:13568  0   40G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvdbb1              202:13569  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9474? \u9492?\u9472?orcalevg-orcalelv 253:0      0  9.5G  0 lvm  /orcale\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvdbb2              202:13570  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# vgcreate awvg /dev/xvdbb2\cf1\highlight2 
+\par \cf0\highlight0   Volume group "awvg" successfully created\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# vgrename awvg awsvg\cf1\highlight2 
+\par \cf0\highlight0   Volume group "awvg" successfully renamed to "awsvg"\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# vgdisplay\cf1\highlight2 
+\par \cf0\highlight0   --- Volume group ---\cf1\highlight2 
+\par \cf0\highlight0   VG Name               awsvg\cf1\highlight2 
+\par \cf0\highlight0   System ID\cf1\highlight2 
+\par \cf0\highlight0   Format                lvm2\cf1\highlight2 
+\par \cf0\highlight0   Metadata Areas        1\cf1\highlight2 
+\par \cf0\highlight0   Metadata Sequence No  2\cf1\highlight2 
+\par \cf0\highlight0   VG Access             read/write\cf1\highlight2 
+\par \cf0\highlight0   VG Status             resizable\cf1\highlight2 
+\par \cf0\highlight0   MAX LV                0\cf1\highlight2 
+\par \cf0\highlight0   Cur LV                0\cf1\highlight2 
+\par \cf0\highlight0   Open LV               0\cf1\highlight2 
+\par \cf0\highlight0   Max PV                0\cf1\highlight2 
+\par \cf0\highlight0   Cur PV                1\cf1\highlight2 
+\par \cf0\highlight0   Act PV                1\cf1\highlight2 
+\par \cf0\highlight0   VG Size               9.53 GiB\cf1\highlight2 
+\par \cf0\highlight0   PE Size               4.00 MiB\cf1\highlight2 
+\par \cf0\highlight0   Total PE              2440\cf1\highlight2 
+\par \cf0\highlight0   Alloc PE / Size       0 / 0\cf1\highlight2 
+\par \cf0\highlight0   Free  PE / Size       2440 / 9.53 GiB\cf1\highlight2 
+\par \cf0\highlight0   VG UUID               Cc8Ax0-Sy0S-BI41-Kd6a-wOOn-tH6T-osRf9d\cf1\highlight2 
+\par 
+\par \cf0\highlight0   --- Volume group ---\cf1\highlight2 
+\par \cf0\highlight0   VG Name               orcalevg\cf1\highlight2 
+\par \cf0\highlight0   System ID\cf1\highlight2 
+\par \cf0\highlight0   Format                lvm2\cf1\highlight2 
+\par \cf0\highlight0   Metadata Areas        1\cf1\highlight2 
+\par \cf0\highlight0   Metadata Sequence No  2\cf1\highlight2 
+\par \cf0\highlight0   VG Access             read/write\cf1\highlight2 
+\par \cf0\highlight0   VG Status             resizable\cf1\highlight2 
+\par \cf0\highlight0   MAX LV                0\cf1\highlight2 
+\par \cf0\highlight0   Cur LV                1\cf1\highlight2 
+\par \cf0\highlight0   Open LV               1\cf1\highlight2 
+\par \cf0\highlight0   Max PV                0\cf1\highlight2 
+\par \cf0\highlight0   Cur PV                1\cf1\highlight2 
+\par \cf0\highlight0   Act PV                1\cf1\highlight2 
+\par \cf0\highlight0   VG Size               <9.54 GiB\cf1\highlight2 
+\par \cf0\highlight0   PE Size               4.00 MiB\cf1\highlight2 
+\par \cf0\highlight0   Total PE              2441\cf1\highlight2 
+\par \cf0\highlight0   Alloc PE / Size       2432 / 9.50 GiB\cf1\highlight2 
+\par \cf0\highlight0   Free  PE / Size       9 / 36.00 MiB\cf1\highlight2 
+\par \cf0\highlight0   VG UUID               JV1YCh-Axr7-XpLJ-BhjC-oiY9-TRXN-Vmb2za\cf1\highlight2 
+\par 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# lvcreate -L 9.5gb awsvg -n awslv\cf1\highlight2 
+\par \cf0\highlight0   Logical volume "awslv" created.\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# blkid\cf1\highlight2 
+\par \cf0\highlight0 /dev/xvda2: SEC_TYPE="msdos" UUID="7B77-95E7" BLOCK_SIZE="512" TYPE="vfat" PARTUUID="68b2905b-df3e-4fb3-80fa-49d1e773aa33"\cf1\highlight2 
+\par \cf0\highlight0 /dev/xvda3: LABEL="root" UUID="266a8881-a1f0-4bfd-932c-685f3bfa17ff" BLOCK_SIZE="512" TYPE="xfs" PARTUUID="6264d520-3fb9-423f-8ab8-7a0a8e3d3562"\cf1\highlight2 
+\par \cf0\highlight0 /dev/xvdbb1: UUID="JZe19O-QG2E-vsji-rkIM-Pi14-dA1c-OejFw4" TYPE="LVM2_member" PARTLABEL="Primary" PARTUUID="a259b2a9-e674-4319-a036-d600e5558355"\cf1\highlight2 
+\par \cf0\highlight0 /dev/mapper/orcalevg-orcalelv: UUID="fef6b41f-ab90-4686-a4bd-6542cb38ddfc" BLOCK_SIZE="4096" TYPE="ext4"\cf1\highlight2 
+\par \cf0\highlight0 /dev/xvdbb2: UUID="Kn0HHz-dF0r-2Fc0-TYbe-8Mc6-EfO9-bX3cUx" TYPE="LVM2_member" PARTLABEL="Primary" PARTUUID="d3f7d6f1-0c44-4b2d-9ca2-d076e23b7475"\cf1\highlight2 
+\par \cf0\highlight0 /dev/xvda1: PARTUUID="fac7f1fb-3e8d-4137-a512-961de09a5549"\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# lsblk\cf1\highlight2 
+\par \cf0\highlight0 NAME                  MAJ:MIN   RM  SIZE RO TYPE MOUNTPOINTS\cf1\highlight2 
+\par \cf0\highlight0 xvda                  202:0      0   10G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda1               202:1      0    1M  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda2               202:2      0  200M  0 part /boot/efi\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvda3               202:3      0  9.8G  0 part /\cf1\highlight2 
+\par \cf0\highlight0 xvdbb                 202:13568  0   40G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvdbb1              202:13569  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9474? \u9492?\u9472?orcalevg-orcalelv 253:0      0  9.5G  0 lvm  /orcale\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvdbb2              202:13570  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0   \u9492?\u9472?awsvg-awslv       253:1      0  9.5G  0 lvm\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# mkdir /aws\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# mount -t ext4 /dev/awsvg/awslv /aws\cf1\highlight2 
+\par \cf0\highlight0 mount: /aws: wrong fs type, bad option, bad superblock on /dev/mapper/awsvg-awslv, missing codepage or helper program, or other error.\cf1\highlight2 
+\par \cf0\highlight0        dmesg(1) may have more information after failed mount system call.\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# mkfs -t ext4 /dev/awsvg/awslv\cf1\highlight2 
+\par \cf0\highlight0 mke2fs 1.47.1 (20-May-2024)\cf1\highlight2 
+\par \cf0\highlight0 Creating filesystem with 2490368 4k blocks and 622592 inodes\cf1\highlight2 
+\par \cf0\highlight0 Filesystem UUID: 4fb4b15a-4e96-4b6d-92d8-6e7f1a52fd14\cf1\highlight2 
+\par \cf0\highlight0 Superblock backups stored on blocks:\cf1\highlight2 
+\par \cf0\highlight0         32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632\cf1\highlight2 
+\par 
+\par \cf0\highlight0 Allocating group tables: done\cf1\highlight2 
+\par \cf0\highlight0 Writing inode tables: done\cf1\highlight2 
+\par \cf0\highlight0 Creating journal (16384 blocks): done\cf1\highlight2 
+\par \cf0\highlight0 Writing superblocks and filesystem accounting information: done\cf1\highlight2 
+\par 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# mount -t ext4 /dev/awsvg/awslv /aws\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# lsblk\cf1\highlight2 
+\par \cf0\highlight0 NAME                  MAJ:MIN   RM  SIZE RO TYPE MOUNTPOINTS\cf1\highlight2 
+\par \cf0\highlight0 xvda                  202:0      0   10G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda1               202:1      0    1M  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda2               202:2      0  200M  0 part /boot/efi\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvda3               202:3      0  9.8G  0 part /\cf1\highlight2 
+\par \cf0\highlight0 xvdbb                 202:13568  0   40G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvdbb1              202:13569  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9474? \u9492?\u9472?orcalevg-orcalelv 253:0      0  9.5G  0 lvm  /orcale\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvdbb2              202:13570  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0   \u9492?\u9472?awsvg-awslv       253:1      0  9.5G  0 lvm  /aws\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# parted xvdbb\cf1\highlight2 
+\par \cf0\highlight0 Error: Could not stat device xvdbb - No such file or directory.\cf1\highlight2 
+\par \cf0\highlight0 Retry/Cancel? CC\cf1\highlight2 
+\par \cf0\highlight0 parted: invalid token: CC\cf1\highlight2 
+\par \cf0\highlight0 Retry/Cancel? ^C\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]#\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]#\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]#\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]#\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]#\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]#\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# lsblk\cf1\highlight2 
+\par \cf0\highlight0 NAME                  MAJ:MIN   RM  SIZE RO TYPE MOUNTPOINTS\cf1\highlight2 
+\par \cf0\highlight0 xvda                  202:0      0   10G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda1               202:1      0    1M  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda2               202:2      0  200M  0 part /boot/efi\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvda3               202:3      0  9.8G  0 part /\cf1\highlight2 
+\par \cf0\highlight0 xvdbb                 202:13568  0   40G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvdbb1              202:13569  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9474? \u9492?\u9472?orcalevg-orcalelv 253:0      0  9.5G  0 lvm  /orcale\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvdbb2              202:13570  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0   \u9492?\u9472?awsvg-awslv       253:1      0  9.5G  0 lvm  /aws\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# parted /dev/xvdbb\cf1\highlight2 
+\par \cf0\highlight0 GNU Parted 3.6\cf1\highlight2 
+\par \cf0\highlight0 Using /dev/xvdbb\cf1\highlight2 
+\par \cf0\highlight0 Welcome to GNU Parted! Type 'help' to view a list of commands.\cf1\highlight2 
+\par \cf0\highlight0 (parted) mkpart\cf1\highlight2 
+\par \cf0\highlight0 Partition name?  []? Primary\cf1\highlight2 
+\par \cf0\highlight0 File system type?  [ext2]?\cf1\highlight2 
+\par \cf0\highlight0 Start? 20481\cf1\highlight2 
+\par \cf0\highlight0 End? 30720\cf1\highlight2 
+\par \cf0\highlight0 (parted) p\cf1\highlight2 
+\par \cf0\highlight0 Model: Xen Virtual Block Device (xvd)\cf1\highlight2 
+\par \cf0\highlight0 Disk /dev/xvdbb: 42.9GB\cf1\highlight2 
+\par \cf0\highlight0 Sector size (logical/physical): 512B/512B\cf1\highlight2 
+\par \cf0\highlight0 Partition Table: gpt\cf1\highlight2 
+\par \cf0\highlight0 Disk Flags:\cf1\highlight2 
+\par 
+\par \cf0\highlight0 Number  Start   End     Size    File system  Name     Flags\cf1\highlight2 
+\par \cf0\highlight0  1      1049kB  10.2GB  10.2GB               Primary\cf1\highlight2 
+\par \cf0\highlight0  2      10.2GB  20.5GB  10.2GB               Primary\cf1\highlight2 
+\par \cf0\highlight0  3      20.5GB  30.7GB  10.2GB  ext2         Primary\cf1\highlight2 
+\par 
+\par \cf0\highlight0 (parted) q\cf1\highlight2 
+\par \cf0\highlight0 Information: You may need to update /etc/fstab.\cf1\highlight2 
+\par 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# pvcreate /dev/xvdbb3\cf1\highlight2 
+\par \cf0\highlight0   Physical volume "/dev/xvdbb3" successfully created.\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# lsblk\cf1\highlight2 
+\par \cf0\highlight0 NAME                  MAJ:MIN   RM  SIZE RO TYPE MOUNTPOINTS\cf1\highlight2 
+\par \cf0\highlight0 xvda                  202:0      0   10G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda1               202:1      0    1M  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda2               202:2      0  200M  0 part /boot/efi\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvda3               202:3      0  9.8G  0 part /\cf1\highlight2 
+\par \cf0\highlight0 xvdbb                 202:13568  0   40G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvdbb1              202:13569  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9474? \u9492?\u9472?orcalevg-orcalelv 253:0      0  9.5G  0 lvm  /orcale\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvdbb2              202:13570  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9474? \u9492?\u9472?awsvg-awslv       253:1      0  9.5G  0 lvm  /aws\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvdbb3              202:13571  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# lvcreate -L 9.5gb orcalevg -n mixkedlv\cf1\highlight2 
+\par \cf0\highlight0   Volume group "orcalevg" has insufficient free space (9 extents): 2432 required.\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# parted /dev/xvdbb\cf1\highlight2 
+\par \cf0\highlight0 GNU Parted 3.6\cf1\highlight2 
+\par \cf0\highlight0 Using /dev/xvdbb\cf1\highlight2 
+\par \cf0\highlight0 Welcome to GNU Parted! Type 'help' to view a list of commands.\cf1\highlight2 
+\par \cf0\highlight0 (parted) p\cf1\highlight2 
+\par \cf0\highlight0 Model: Xen Virtual Block Device (xvd)\cf1\highlight2 
+\par \cf0\highlight0 Disk /dev/xvdbb: 42.9GB\cf1\highlight2 
+\par \cf0\highlight0 Sector size (logical/physical): 512B/512B\cf1\highlight2 
+\par \cf0\highlight0 Partition Table: gpt\cf1\highlight2 
+\par \cf0\highlight0 Disk Flags:\cf1\highlight2 
+\par 
+\par \cf0\highlight0 Number  Start   End     Size    File system  Name     Flags\cf1\highlight2 
+\par \cf0\highlight0  1      1049kB  10.2GB  10.2GB               Primary\cf1\highlight2 
+\par \cf0\highlight0  2      10.2GB  20.5GB  10.2GB               Primary\cf1\highlight2 
+\par \cf0\highlight0  3      20.5GB  30.7GB  10.2GB               Primary\cf1\highlight2 
+\par 
+\par \cf0\highlight0 (parted) rm\cf1\highlight2 
+\par \cf0\highlight0 Partition number? 3\cf1\highlight2 
+\par \cf0\highlight0 (parted) p\cf1\highlight2 
+\par \cf0\highlight0 Model: Xen Virtual Block Device (xvd)\cf1\highlight2 
+\par \cf0\highlight0 Disk /dev/xvdbb: 42.9GB\cf1\highlight2 
+\par \cf0\highlight0 Sector size (logical/physical): 512B/512B\cf1\highlight2 
+\par \cf0\highlight0 Partition Table: gpt\cf1\highlight2 
+\par \cf0\highlight0 Disk Flags:\cf1\highlight2 
+\par 
+\par \cf0\highlight0 Number  Start   End     Size    File system  Name     Flags\cf1\highlight2 
+\par \cf0\highlight0  1      1049kB  10.2GB  10.2GB               Primary\cf1\highlight2 
+\par \cf0\highlight0  2      10.2GB  20.5GB  10.2GB               Primary\cf1\highlight2 
+\par 
+\par \cf0\highlight0 (parted) q\cf1\highlight2 
+\par \cf0\highlight0 Information: You may need to update /etc/fstab.\cf1\highlight2 
+\par 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# parted /dev/xvdbb\cf1\highlight2 
+\par \cf0\highlight0 GNU Parted 3.6\cf1\highlight2 
+\par \cf0\highlight0 Using /dev/xvdbb\cf1\highlight2 
+\par \cf0\highlight0 Welcome to GNU Parted! Type 'help' to view a list of commands.\cf1\highlight2 
+\par \cf0\highlight0 (parted) mkpart\cf1\highlight2 
+\par \cf0\highlight0 Partition name?  []? Primary\cf1\highlight2 
+\par \cf0\highlight0 File system type?  [ext2]?\cf1\highlight2 
+\par \cf0\highlight0 Start? 20481\cf1\highlight2 
+\par \cf0\highlight0 End? 30720\cf1\highlight2 
+\par \cf0\highlight0 (parted) p\cf1\highlight2 
+\par \cf0\highlight0 Model: Xen Virtual Block Device (xvd)\cf1\highlight2 
+\par \cf0\highlight0 Disk /dev/xvdbb: 42.9GB\cf1\highlight2 
+\par \cf0\highlight0 Sector size (logical/physical): 512B/512B\cf1\highlight2 
+\par \cf0\highlight0 Partition Table: gpt\cf1\highlight2 
+\par \cf0\highlight0 Disk Flags:\cf1\highlight2 
+\par 
+\par \cf0\highlight0 Number  Start   End     Size    File system  Name     Flags\cf1\highlight2 
+\par \cf0\highlight0  1      1049kB  10.2GB  10.2GB               Primary\cf1\highlight2 
+\par \cf0\highlight0  2      10.2GB  20.5GB  10.2GB               Primary\cf1\highlight2 
+\par \cf0\highlight0  3      20.5GB  30.7GB  10.2GB  ext2         Primary\cf1\highlight2 
+\par 
+\par \cf0\highlight0 (parted) q\cf1\highlight2 
+\par \cf0\highlight0 Information: You may need to update /etc/fstab.\cf1\highlight2 
+\par 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# lsblk\cf1\highlight2 
+\par \cf0\highlight0 NAME                  MAJ:MIN   RM  SIZE RO TYPE MOUNTPOINTS\cf1\highlight2 
+\par \cf0\highlight0 xvda                  202:0      0   10G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda1               202:1      0    1M  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda2               202:2      0  200M  0 part /boot/efi\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvda3               202:3      0  9.8G  0 part /\cf1\highlight2 
+\par \cf0\highlight0 xvdbb                 202:13568  0   40G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvdbb1              202:13569  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9474? \u9492?\u9472?orcalevg-orcalelv 253:0      0  9.5G  0 lvm  /orcale\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvdbb2              202:13570  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9474? \u9492?\u9472?awsvg-awslv       253:1      0  9.5G  0 lvm  /aws\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvdbb3              202:13571  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# pvcreate /dev/xvdbb1\cf1\highlight2 
+\par \cf0\highlight0   Can't initialize physical volume "/dev/xvdbb1" of volume group "orcalevg" without -ff\cf1\highlight2 
+\par \cf0\highlight0   /dev/xvdbb1: physical volume not initialized.\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# pvcreate /dev/xvdbb3\cf1\highlight2 
+\par \cf0\highlight0   Physical volume "/dev/xvdbb3" successfully created.\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# vgextend oraclevg /dev/xvdbb3\cf1\highlight2 
+\par \cf0\highlight0   Volume group "oraclevg" not found\cf1\highlight2 
+\par \cf0\highlight0   Cannot process volume group oraclevg\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# vgextend orcalevg /dev/xvdbb3\cf1\highlight2 
+\par \cf0\highlight0   Volume group "orcalevg" successfully extended\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# lsblk\cf1\highlight2 
+\par \cf0\highlight0 NAME                  MAJ:MIN   RM  SIZE RO TYPE MOUNTPOINTS\cf1\highlight2 
+\par \cf0\highlight0 xvda                  202:0      0   10G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda1               202:1      0    1M  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda2               202:2      0  200M  0 part /boot/efi\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvda3               202:3      0  9.8G  0 part /\cf1\highlight2 
+\par \cf0\highlight0 xvdbb                 202:13568  0   40G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvdbb1              202:13569  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9474? \u9492?\u9472?orcalevg-orcalelv 253:0      0  9.5G  0 lvm  /orcale\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvdbb2              202:13570  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9474? \u9492?\u9472?awsvg-awslv       253:1      0  9.5G  0 lvm  /aws\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvdbb3              202:13571  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# vgs\cf1\highlight2 
+\par \cf0\highlight0   VG       #PV #LV #SN Attr   VSize  VFree\cf1\highlight2 
+\par \cf0\highlight0   awsvg      1   1   0 wz--n-  9.53g 32.00m\cf1\highlight2 
+\par \cf0\highlight0   orcalevg   2   1   0 wz--n- 19.07g  9.57g\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# lvextend -L 9.5gb /dev/orcalevg/orcalelv\cf1\highlight2 
+\par \cf0\highlight0   New size (2432 extents) matches existing size (2432 extents).\cf1\highlight2 
+\par \cf0\highlight0   No size change.\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# lvs\cf1\highlight2 
+\par \cf0\highlight0   LV       VG       Attr       LSize Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert\cf1\highlight2 
+\par \cf0\highlight0   awslv    awsvg    -wi-ao---- 9.50g\cf1\highlight2 
+\par \cf0\highlight0   orcalelv orcalevg -wi-ao---- 9.50g\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# vgs\cf1\highlight2 
+\par \cf0\highlight0   VG       #PV #LV #SN Attr   VSize  VFree\cf1\highlight2 
+\par \cf0\highlight0   awsvg      1   1   0 wz--n-  9.53g 32.00m\cf1\highlight2 
+\par \cf0\highlight0   orcalevg   2   1   0 wz--n- 19.07g  9.57g\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# lvs\cf1\highlight2 
+\par \cf0\highlight0   LV       VG       Attr       LSize Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert\cf1\highlight2 
+\par \cf0\highlight0   awslv    awsvg    -wi-ao---- 9.50g\cf1\highlight2 
+\par \cf0\highlight0   orcalelv orcalevg -wi-ao---- 9.50g\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# vgs\cf1\highlight2 
+\par \cf0\highlight0   VG       #PV #LV #SN Attr   VSize  VFree\cf1\highlight2 
+\par \cf0\highlight0   awsvg      1   1   0 wz--n-  9.53g 32.00m\cf1\highlight2 
+\par \cf0\highlight0   orcalevg   2   1   0 wz--n- 19.07g  9.57g\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# lvextend -l +100%FREE /dev/orcalevg/orcalelv\cf1\highlight2 
+\par \cf0\highlight0   Size of logical volume orcalevg/orcalelv changed from 9.50 GiB (2432 extents) to 19.07 GiB (4882 extents).\cf1\highlight2 
+\par \cf0\highlight0   Logical volume orcalevg/orcalelv successfully resized.\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# vgs\cf1\highlight2 
+\par \cf0\highlight0   VG       #PV #LV #SN Attr   VSize  VFree\cf1\highlight2 
+\par \cf0\highlight0   awsvg      1   1   0 wz--n-  9.53g 32.00m\cf1\highlight2 
+\par \cf0\highlight0   orcalevg   2   1   0 wz--n- 19.07g     0\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# lvs\cf1\highlight2 
+\par \cf0\highlight0   LV       VG       Attr       LSize  Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert\cf1\highlight2 
+\par \cf0\highlight0   awslv    awsvg    -wi-ao----  9.50g\cf1\highlight2 
+\par \cf0\highlight0   orcalelv orcalevg -wi-ao---- 19.07g\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# df -Th\cf1\highlight2 
+\par \cf0\highlight0 Filesystem                    Type      Size  Used Avail Use% Mounted on\cf1\highlight2 
+\par \cf0\highlight0 /dev/xvda3                    xfs       9.8G  2.5G  7.4G  25% /\cf1\highlight2 
+\par \cf0\highlight0 devtmpfs                      devtmpfs  4.0M     0  4.0M   0% /dev\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                         tmpfs     476M     0  476M   0% /dev/shm\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                         tmpfs     191M  3.7M  187M   2% /run\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                         tmpfs     1.0M     0  1.0M   0% /run/credentials/systemd-journald.service\cf1\highlight2 
+\par \cf0\highlight0 /dev/xvda2                    vfat      200M  8.4M  192M   5% /boot/efi\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                         tmpfs     1.0M     0  1.0M   0% /run/credentials/getty@tty1.service\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                         tmpfs     1.0M     0  1.0M   0% /run/credentials/serial-getty@ttyS0.service\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                         tmpfs      96M  4.0K   96M   1% /run/user/1000\cf1\highlight2 
+\par \cf0\highlight0 /dev/mapper/orcalevg-orcalelv ext4      9.3G   24K  8.8G   1% /orcale\cf1\highlight2 
+\par \cf0\highlight0 /dev/mapper/awsvg-awslv       ext4      9.3G   24K  8.8G   1% /aws\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# resize2fs /dev/orcalevg/orcalelv\cf1\highlight2 
+\par \cf0\highlight0 resize2fs 1.47.1 (20-May-2024)\cf1\highlight2 
+\par \cf0\highlight0 Filesystem at /dev/orcalevg/orcalelv is mounted on /orcale; on-line resizing required\cf1\highlight2 
+\par \cf0\highlight0 old_desc_blocks = 2, new_desc_blocks = 3\cf1\highlight2 
+\par \cf0\highlight0 The filesystem on /dev/orcalevg/orcalelv is now 4999168 (4k) blocks long.\cf1\highlight2 
+\par 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# df -Th\cf1\highlight2 
+\par \cf0\highlight0 Filesystem                    Type      Size  Used Avail Use% Mounted on\cf1\highlight2 
+\par \cf0\highlight0 /dev/xvda3                    xfs       9.8G  2.5G  7.4G  25% /\cf1\highlight2 
+\par \cf0\highlight0 devtmpfs                      devtmpfs  4.0M     0  4.0M   0% /dev\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                         tmpfs     476M     0  476M   0% /dev/shm\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                         tmpfs     191M  3.7M  187M   2% /run\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                         tmpfs     1.0M     0  1.0M   0% /run/credentials/systemd-journald.service\cf1\highlight2 
+\par \cf0\highlight0 /dev/xvda2                    vfat      200M  8.4M  192M   5% /boot/efi\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                         tmpfs     1.0M     0  1.0M   0% /run/credentials/getty@tty1.service\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                         tmpfs     1.0M     0  1.0M   0% /run/credentials/serial-getty@ttyS0.service\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                         tmpfs      96M  4.0K   96M   1% /run/user/1000\cf1\highlight2 
+\par \cf0\highlight0 /dev/mapper/orcalevg-orcalelv ext4       19G   24K   18G   1% /orcale\cf1\highlight2 
+\par \cf0\highlight0 /dev/mapper/awsvg-awslv       ext4      9.3G   24K  8.8G   1% /aws\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]#  df -h\cf1\highlight2 
+\par \cf0\highlight0 Filesystem                     Size  Used Avail Use% Mounted on\cf1\highlight2 
+\par \cf0\highlight0 /dev/xvda3                     9.8G  2.5G  7.4G  25% /\cf1\highlight2 
+\par \cf0\highlight0 devtmpfs                       4.0M     0  4.0M   0% /dev\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                          476M     0  476M   0% /dev/shm\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                          191M  3.7M  187M   2% /run\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                          1.0M     0  1.0M   0% /run/credentials/systemd-journald.service\cf1\highlight2 
+\par \cf0\highlight0 /dev/xvda2                     200M  8.4M  192M   5% /boot/efi\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                          1.0M     0  1.0M   0% /run/credentials/getty@tty1.service\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                          1.0M     0  1.0M   0% /run/credentials/serial-getty@ttyS0.service\cf1\highlight2 
+\par \cf0\highlight0 tmpfs                           96M  4.0K   96M   1% /run/user/1000\cf1\highlight2 
+\par \cf0\highlight0 /dev/mapper/orcalevg-orcalelv   19G   24K   18G   1% /orcale\cf1\highlight2 
+\par \cf0\highlight0 /dev/mapper/awsvg-awslv        9.3G   24K  8.8G   1% /aws\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# lsblk\cf1\highlight2 
+\par \cf0\highlight0 NAME                  MAJ:MIN   RM  SIZE RO TYPE MOUNTPOINTS\cf1\highlight2 
+\par \cf0\highlight0 xvda                  202:0      0   10G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda1               202:1      0    1M  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvda2               202:2      0  200M  0 part /boot/efi\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvda3               202:3      0  9.8G  0 part /\cf1\highlight2 
+\par \cf0\highlight0 xvdbb                 202:13568  0   40G  0 disk\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvdbb1              202:13569  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9474? \u9492?\u9472?orcalevg-orcalelv 253:0      0 19.1G  0 lvm  /orcale\cf1\highlight2 
+\par \cf0\highlight0\u9500?\u9472?xvdbb2              202:13570  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0\u9474? \u9492?\u9472?awsvg-awslv       253:1      0  9.5G  0 lvm  /aws\cf1\highlight2 
+\par \cf0\highlight0\u9492?\u9472?xvdbb3              202:13571  0  9.5G  0 part\cf1\highlight2 
+\par \cf0\highlight0   \u9492?\u9472?orcalevg-orcalelv 253:0      0 19.1G  0 lvm  /orcale\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]# pvs\cf1\highlight2 
+\par \cf0\highlight0   PV          VG       Fmt  Attr PSize  PFree\cf1\highlight2 
+\par \cf0\highlight0   /dev/xvdbb1 orcalevg lvm2 a--  <9.54g     0\cf1\highlight2 
+\par \cf0\highlight0   /dev/xvdbb2 awsvg    lvm2 a--   9.53g 32.00m\cf1\highlight2 
+\par \cf0\highlight0   /dev/xvdbb3 orcalevg lvm2 a--  <9.54g     0\cf1\highlight2 
+\par \cf0\highlight0 [root@ip-172-31-34-93 ~]#\cf1\highlight2 
+\par \cf4\highlight0 Network error: Software caused connection abort\cf1\highlight2 
+\par 
+\par \cf5\highlight0\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\cf1\highlight2 
+\par 
+\par \cf4\highlight0 Session stopped\cf1\highlight2 
+\par \cf0\highlight0     - Press \cf6 <Return>\cf0  to exit tab\cf1\highlight2 
+\par \cf0\highlight0     - Press \cf6 R\cf0  to restart session\cf1\highlight2 
+\par \cf0\highlight0     - Press \cf6 S\cf0  to save terminal output to file\cf1\highlight2 
+\par \pard\cf0\highlight0\f1\fs16 
+\par }
+ 
